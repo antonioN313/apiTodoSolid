@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.3.1",
     "@types/node": "^20.6.2",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "prisma": "^5.3.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   }

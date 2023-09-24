@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id    Int     @id @default(autoincrement()) @db.UnsignedInt
+  name  String? @db.VarChar(75)
+  tasks tasks?
+}
+
+model tasks {
+  id          Int        @id @default(autoincrement()) @db.UnsignedInt
+  task        String?    @db.VarChar(128)
+  description String?    @db.Text
+  taskdate    DateTime?  @db.Date
+  status      Int?       @db.TinyInt
+  categories  categories @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_categories_id")
+  users       users?
+}
+
+model users {
+  id       Int     @id @default(autoincrement()) @db.UnsignedInt
+  name     String? @db.VarChar(120)
+  email    String? @db.VarChar(254)
+  password String? @db.VarChar(21)
+  tasks    tasks   @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_tasks_id")
+}
